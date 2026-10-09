@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Filter
+    </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h1>Hello</h1>
+
+    <a href="/">Index</a>
+    <a href="/new">New</a>
+
+
+    <form>
+        <select name="category" id="">
+            <option value="elektronika">elektronika</option>
+            <option value="ruházat">ruházat</option>
+            <option value="könyv">könyv</option>
+            <option value="játék">játék</option>
+        </select>
+
+        <button type="submit">Filter</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Név</td>
+                <td>Kategória</td>
+                <td>Ár</td>
+                <td>Raktárkészlet</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% data.forEach(element=> {
+                %>
+                <tr style=' <%= element.stock==0?"color:red; font-weight: bold;":"" %>'>
+                    <td>
+                        <%= element.name %>
+                    </td>
+                    <td>
+                        <%= element.category %>
+                    </td>
+                    <td>
+                        <%= element.price %> Ft
+                    </td>
+                    <td style=' <%=element.stock<5?" color:red; font-weight: bold;":"" %> '>
+                        <%=element.stock %> db
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+</body>
+
+</html>

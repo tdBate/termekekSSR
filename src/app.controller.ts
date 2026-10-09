@@ -1,4 +1,4 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service.js';
 import { Product } from './models.js';
 
@@ -76,5 +76,11 @@ export class AppController {
     return {
       data: products.toSorted((a, b) => a.price - b.price)
     }
+  }
+
+  @Get("/filter")
+  @Render('filter')
+  getFilter(@Query("category") category: string) {
+    return { data: products.filter(item => item.category == category).toSorted((a, b) => b.price - a.price) }
   }
 }
