@@ -101,4 +101,15 @@ export class AppController {
       success: true
     }
   }
+
+  @Get("/stats")
+  @Render('stats')
+  getStats() {
+    return {
+      sumStock: products.reduce((a, b) => { return a + b.stock }, 0),
+      avgPrice: Math.round(products.reduce((a, b) => { return a + b.price }, 0) / products.length),
+      minPrice: Math.min(...products.map(item => item.price)),
+      maxPrice: Math.max(...products.map(item => item.price))
+    }
+  }
 }
