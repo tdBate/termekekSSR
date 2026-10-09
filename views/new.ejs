@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+</head>
+
+<body>
+    <a href="/">Index</a>
+    <a href="/filter">Filter</a>
+
+    <form action="/new" method="post">
+        <label for="name">Name</label>
+        <input name="name" type="text"><br>
+
+        <label for="category">Category</label>
+        <select name="category" id="">
+            <option value="elektronika">elektronika</option>
+            <option value="ruházat">ruházat</option>
+            <option value="könyv">könyv</option>
+            <option value="játék">játék</option>
+        </select><br>
+
+        <label for="price">Price</label>
+        <input name="price" type="text"><br>
+
+        <label for="stock">Stock</label>
+        <input name="stock" type="text"><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div style='<%= locals.success?"":"display: none;"%> color: green;'>
+        <p>Sikeres felvitel</p>
+    </div>
+
+</body>
+
+</html>

@@ -1,6 +1,7 @@
-import { Controller, Get, Query, Render } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service.js';
-import { Product } from './models.js';
+import type { Product } from './models/models.js';
+import { CreateProductDto } from './models/CreateProductDto.dto.js';
 
 const products: Product[] = [
   {
@@ -82,5 +83,22 @@ export class AppController {
   @Render('filter')
   getFilter(@Query("category") category: string) {
     return { data: products.filter(item => item.category == category).toSorted((a, b) => b.price - a.price) }
+  }
+
+  @Get("/new")
+  @Render('new')
+  getNew() {
+    return {
+
+    }
+  }
+
+  @Post("/new")
+  @Render('new')
+  postNew(@Body() body: CreateProductDto) {
+    products.push(body as Product)
+    return {
+      success: true
+    }
   }
 }
