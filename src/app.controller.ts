@@ -74,7 +74,7 @@ export class AppController {
   @Render('index')
   getHello() {
     return {
-      title: 'My First NestJS App'
+      data: products.toSorted((a, b) => a.price - b.price)
     }
   }
 }
